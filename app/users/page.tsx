@@ -1,9 +1,26 @@
-import React from 'react'
+import { link } from "fs";
+import React from "react";
 
-const UsersPage = () => {
-  return (
-    <div>UsersPage</div>
-  )
+interface User {
+	id: number;
+	name: string;
 }
 
-export default UsersPage
+const UsersPage = async () => {
+	const response = await fetch("https://jsonplaceholder.typicode.com/users", { next: { revalidate: 10 } });
+	const users: User[] = await response.json();
+
+	return (
+		<>
+			<h1>Users</h1>
+      <p>{new Date().toLocaleTimeString()}</p>
+			<ul>
+				{users.map((user) => (
+					<li key={user.id}>{user.name}</li>
+				))}
+			</ul>
+		</>
+	);
+};
+
+export default UsersPage;
