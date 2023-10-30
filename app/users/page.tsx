@@ -1,4 +1,5 @@
 import { link } from "fs";
+import Link from "next/link";
 import React from "react";
 
 interface User {
@@ -7,16 +8,19 @@ interface User {
 }
 
 const UsersPage = async () => {
-	const response = await fetch("https://jsonplaceholder.typicode.com/users", { next: { revalidate: 10 } });
+	// const response = await fetch("https://jsonplaceholder.typicode.com/users", { next: { revalidate: 10 } });
+	const response = await fetch("https://jsonplaceholder.typicode.com/users");
 	const users: User[] = await response.json();
 
 	return (
 		<>
 			<h1>Users</h1>
-      <p>{new Date().toLocaleTimeString()}</p>
+      		<p>{new Date().toLocaleTimeString()}</p>
 			<ul>
 				{users.map((user) => (
-					<li key={user.id}>{user.name}</li>
+					<div key={user.id}>
+						<Link href={`/users/${user.id}`}>{user.name}</Link>
+					</div>
 				))}
 			</ul>
 		</>
