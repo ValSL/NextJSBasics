@@ -1,5 +1,6 @@
 import React from 'react'
 import ClickMeButton from "./ClickMeButton";
+import { revalidateTag } from "next/cache";
 
 const ProductCard = () => {
   return (

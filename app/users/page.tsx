@@ -1,5 +1,6 @@
 import { link } from "fs";
 import Link from "next/link";
+import Link from "next/link";
 import React from "react";
 
 interface User {
@@ -14,6 +15,7 @@ const UsersPage = async () => {
 
 	return (
 		<>
+      <Link href='/'>Back</Link>
 			<h1>Users</h1>
       		<p>{new Date().toLocaleTimeString()}</p>
 			<ul>
